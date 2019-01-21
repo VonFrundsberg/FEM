@@ -2,10 +2,10 @@ import numpy as np
 import scipy.special as special
 import numpy.linalg as np_linalg
 import scipy.interpolate as sp_interp
-from new_misc import diff as diff
+from misc import diff as diff
 import matplotlib.pyplot as plt
-from new_misc import integr as integr
-from new_misc import spectral as spectral
+from misc import integr as integr
+from misc import spectral as spectral
 import scipy.linalg as sp_linalg
 import scipy.sparse as sparse
 import warnings
