@@ -1,8 +1,8 @@
 import numpy as np
 import scipy.linalg as sp_linalg
 import matplotlib.pyplot as plt
-from new_misc import spectral
-from new_misc import diff
+from misc import spectral
+from misc import diff
 import scipy.interpolate as sp_interp
 import scipy.special as special
 
