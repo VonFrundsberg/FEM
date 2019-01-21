@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.linalg as sp_linalg
 import scipy.special as special
-from new_misc import spectral as spectral
+from misc import spectral as spectral
 import numpy.polynomial.chebyshev as np_cheb
 import matplotlib.pyplot as plt
 import time as time
