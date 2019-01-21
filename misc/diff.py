@@ -1,5 +1,5 @@
 import numpy as np
-from new_misc import spectral as spectral
+from misc import spectral as spectral
 
 def cheb_diff(n, a=-1, b=1):
         x = spectral.chebNodes(n, a, b)
