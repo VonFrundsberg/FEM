@@ -1,3 +1,6 @@
+#various integration routines
+#Spectral methods in MatLab
+#Hybrid Gauss-Trapezoidal Quadrature Rules
 import numpy as np
 import scipy.linalg as sp_linalg
 import scipy.special as special
