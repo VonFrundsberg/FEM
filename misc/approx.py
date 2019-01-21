@@ -1,5 +1,4 @@
 #Tensor Trains for multidimensional problems
-#https://refubium.fu-berlin.de/bitstream/handle/fub188/3366/dissertation_pg_final.pdf?sequence=1
 import numpy as np
 import scipy.linalg as sp_linalg
 import matplotlib.pyplot as plt
