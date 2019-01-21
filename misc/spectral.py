@@ -1,3 +1,5 @@
+#basic spectral routines
+#Spectral methods in MatLab
 import numpy as np
 import scipy.special as special
 import scipy.linalg as sp_lin
