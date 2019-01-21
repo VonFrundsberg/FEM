@@ -1,5 +1,4 @@
 #main dfem file
-#https://www.karlin.mff.cuni.cz/~dolejsi/Vyuka/LectureNotes_DGM.pdf
 import numpy as np
 import scipy.special as special
 import numpy.linalg as np_linalg
