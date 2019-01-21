@@ -1,5 +1,4 @@
 #spectral differentiation on chebyshev nodes
-#http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.473.7647&rep=rep1&type=pdf
 import numpy as np
 from misc import spectral as spectral
 def cheb_diff(n, a=-1, b=1):
