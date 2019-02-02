@@ -1,0 +1,362 @@
+\documentclass[a4paper,12pt, russian, titlepage]{article} %{extreport}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{times}
+\usepackage{cite}
+\usepackage{algorithm,algpseudocode}
+\usepackage{pscyr}
+\usepackage{mathtools}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage{amssymb,amsfonts,amsmath,amsthm} 
+\usepackage{indentfirst} 
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{multirow} 
+\usepackage{ulem}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{blindtext}
+\usepackage[12pt]{extsizes}
+\usepackage{float}
+
+% Поля страницы
+\usepackage{geometry}
+\usepackage[unicode]{hyperref}
+\geometry{right=1cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+% КОНЕЦ: Поля страницы
+
+\hypersetup{pdfborder={0 0 0}}
+\hyphenpenalty=10000
+\tolerance=9999
+\binoppenalty=10000
+\relpenalty=10000
+\parindent=1cm
+\numberwithin{equation}{section}
+\abovecaptionskip=6pt
+\belowcaptionskip=6pt
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\abovedisplayshortskip=0pt
+\belowdisplayshortskip=0pt
+
+
+\makeatletter
+\newcommand{\l@abcd}[2]{\hbox to\textwidth{#1\dotfill #2}}
+
+\makeatother
+
+
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+
+\newcommand{\bd}{\textbackslash\textbackslash}
+\newcommand{\bs}{\textbackslash}
+\newcommand{\empline}{\mbox{}\newline}
+\newcommand{\OutOfContents}[1]{
+    \newpage
+    \begin{center}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{center}
+}
+\newcommand{\Razdel}[1]{
+    \newpage
+    \begin{center}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{center}
+    \addcontentsline{toc}{abcd}{#1}
+}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\append}[1]{
+    %\newpage%
+    \begin{flushright}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{flushright}
+    %\addcontentsline{toc}{abcd}{#1}%
+}
+
+\newcommand{\itab}[1]{\hspace{.55\textwidth}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.01\textwidth}\rlap{#1}}
+\newcommand{\xmod}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\newcommand{\Abstr}[1]{
+    \begin{center}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{center}
+}
+
+\newcounter{figs}
+
+\renewcommand{\thefigs}{Рисунок \arabic{figs}}
+\renewcommand{\i}{\mathrm{i}}
+
+\newcommand{\FigureCaption}[2]{
+    \refstepcounter{figs}
+    \hbox to \hsize {\hfil {\parbox{#2}{\small\begin{center}\vspace{-10pt}Рисунок \arabic{figs} -- #1\end{center}\vspace{-10pt}}}\hfil}
+}
+
+\newcommand{\dif}[2]{\frac{\partial{}#1}{\partial{}#2}}
+
+\renewcommand{\baselinestretch}{1.2}
+%\renewcommand{\bfdefault}{b}
+\renewcommand{\rmdefault}{ftm} % Times New Roman
+
+\makeatletter
+
+\renewcommand{\section}{\@startsection{section}{1}{1cm}%
+{3.4ex plus 0.9ex minus .2ex}{2ex plus.2ex}%
+{\normalfont\large\bfseries}}
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{1cm}%
+{3.4ex plus 0.9ex minus .2ex}{2ex plus.2ex}%
+{\normalfont\large\bfseries}}
+
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{1cm}%
+{3.4ex plus 0.9ex minus .2ex}{2ex plus.2ex}%
+{\normalfont\large\bfseries}}
+
+\renewcommand{\l@section}{\@dottedtocline{1}{0.39cm}{1em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{0.78cm}{1.8em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{1.16cm}{2.5em}}
+
+\renewcommand{\p@figure}{Рисунок }
+\renewcommand{\p@table}{Таблица }
+
+
+\renewcommand{\@pnumwidth}{1em}
+\renewcommand{\@dotsep}{2}
+\renewcommand{\@biblabel}[1]{#1.\hfill}
+
+\renewcommand{\@makecaption}[3]{%
+
+\vspace{\abovecaptionskip}%			
+\sbox{\@tempboxa}{#1 -- #2}
+\small #1 -- #2\par%
+\vspace{\belowcaptionskip}}
+\newcommand{\maindef}[1]{\textup{\textbf{#1}}}
+\makeatother
+\newtheorem{theorem}{Теорема}
+\numberwithin{theorem}{subsection}
+\newtheorem{definition}{Определение}
+\numberwithin{definition}{subsection}
+\newtheorem{proposition}{Утверждение}
+\numberwithin{proposition}{subsection}
+
+\begin{document}
+\section{Численное решение модифицированного уравнения Бесселя}
+Рассматривается уравнение вида
+\begin{equation}\label{eq:poisson_f_hat}
+\frac{d^2 u(x)}{dx^2} + \frac{1}{x}\frac{d u(x)}{d x} - k^2 u(x) - \frac{n^2}{x^2} u(x) = f(x),
+\end{equation} 
+с граничными условиями при $n = 0$
+\begin{equation}\label{eq:better_poisson_f_hat_cond_1}
+ \frac{du}{dx}\bigg|_{x = 0} = 0, \quad u \big|_{x = L} = \frac{K_0(k L)}{k K'_0(k L)} u'(L),
+\end{equation}
+и
+\begin{equation}\label{eq:better_poisson_f_hat_cond_2}
+u\big|_{x = 0} = 0, \quad u \big|_{x = L} = \frac{K_n(k L)}{k K'_n(k L)} u'(L),
+\end{equation}
+при $n \ne 0$. \par
+
+Для решения $(\ref{eq:poisson_f_hat})$ будем использовать форму вида 
+\begin{equation}\label{eq:bilinear_form}
+A(u, v) = a(u, v)  + k^2 (u, v)  +  n^2  \left(\frac{1}{x^2} u, v \right) + C(n, k) u(L) v(L) = -\left(f, v \right),
+\end{equation}
+
+где
+\begin{gather}
+a(u, v) = \sum_{K \in \mathcal{T}_h} \int_K x \, u'(x) v'(x) dx - \sum_{\gamma \in \mathcal{F}^I_h}\gamma \left(  \langle  u'(\gamma) \rangle [ v(\gamma) ] -  \langle  v'(\gamma) \rangle [ u(\gamma) ] \right), \\
+\langle u(\gamma) \rangle = \frac{1}{2} (u(\gamma - 0) + u(\gamma + 0), \quad [u(\gamma)] = u(\gamma - 0) - u(\gamma + 0), \\
+(u, v) = \int_\Omega x \, u(x) v(x) \, dx, \quad C(n, k) = k L \frac{K'_{n}(k L)}{K_n(k L)}.
+\end{gather} \par
+Решение уравнения $(\ref{eq:bilinear_form})$ рассматривается на пространстве $V$, 
+\begin{equation}
+V^k = \{v \in L^2(\Omega); v|_K \in H^k(K)  ,\forall K \in \mathcal{T} \},
+\end{equation}
+которое, для численного метода, заменяется на 
+\begin{equation}
+V_h = \{v \in L^2(\Omega); v|_K \in P^p(K)  ,\forall K \in \mathcal{T}_h \},
+\end{equation}
+где $P^p(K)$ --- конечномерное пространство размерности $p$ на $K$.
+
+\subsection{коэрцицивность}
+Введем полунорму
+\begin{equation}
+|v|_{V^k} = \left(\sum_{K \in \mathcal{T}} \norm{D^k v}_{L^2_{w(x)}(K)} \right)^{1/2},
+\end{equation}
+где $w(x) = x$. \par
+Нужно показать, что 
+\begin{equation}
+A(v, v) \ge C \norm{v}_V^k, \quad v \in V_h.
+\end{equation} \par
+Учитывая заданную полунорму,
+\begin{gather}
+A(v, v) = |v|^2_{V^1} +  k^2 (v, v)  +  n^2  \left(\frac{1}{x^2} v, v \right) + C(n, k) v^2(L) \ge 
+\norm{v}_{H_1}
+\end{gather}
+%\begin{gather}
+%A(u, v) = a(u, v) + k^2 (u, v)  +  n^2  \left(\frac{1}{x^2} u, v \right) + C(n, k) u(L) v(L), \\
+%A(u, v) \le |a(u, v)| + k^2 |(u, v)| + n^2 |\left(\frac{1}{x^2} u, v \right)| + C(n, k) |u(L) v(L)|, \\
+%A(u, v) \le \norm{u} \norm{v} + k^2\norm{u} \norm{v} + n^2 |\left(\frac{1}{x^2} u, v \right)| + C(n, k) \norm{u} \norm{v}, \\
+%|a(u, v)| \le \norm{u} \norm{v}.
+%\end{gather}
+
+\subsection{основная часть}
+Обозначим
+\begin{equation}
+e_h = \xi + \eta, \quad \xi = u_h - \Pi_{hp}u \in S_{hp}, \quad \eta = \Pi_{hp} u - u \in H^2(\Omega, \mathcal{T}_h)
+\end{equation}
+из ортогональности решения следует, что
+\begin{equation}
+A_h(\xi, v_h) + A_h(\eta, v_h) = 0
+\end{equation}
+если подставить в это уравнение $v_h = \xi$, то из коэрцицивности получим (в какой-то норме)
+\begin{equation}
+C \norm{\xi}^2 \le A_h(\xi, \xi) = - A_h(\xi, \eta)
+\end{equation}
+В следствии 1.33 показано, что 
+\begin{equation}
+\abs{a(u, v)} \le \norm{u}_{1, \sigma} \norm{v}_{1, \sigma}, \quad u, v \in H^2(\Omega, \mathcal{T}_h),
+\end{equation}
+где
+
+\begin{equation}
+\norm{u}_{1, \sigma} = \xmod{u} + \sum_{\Gamma \in \mathcal{F}} \sigma^{-1} \left(\vec{n}, \langle\nabla v \rangle\right)^2 dS, \quad
+ \xmod{u} = (\abs{u}^2_{H^1(\Omega, \mathcal{T}_h)} + J^\sigma(u, u)).
+\end{equation}
+в нашей билинейной форме $J^\sigma = 0$, поэтому части с $\sigma$ вроде бы можно просто опустить. \par
+Дальше, в лемме 1.35 показывается, что
+\begin{gather}
+\xmod{u} \le \norm{u}_{1, \sigma} \le C_{\sigma} R(u), \\
+R(u) = \left(\sum_{K \in \mathcal{T}_h} \left(\abs{u}_{H^1(K)}^2 + h^2_K \abs{u}_{H^2(K)}^2 + h^{-2}_K \norm{u}_{L^2(K)}^2\right) \right)^{1/2}.
+\end{gather}
+В итоге получается, что 
+\begin{equation}
+\abs{A_h(\eta, \xi)} \le \norm{\eta}_{1, \sigma} \norm{\xi}_{1, \sigma} \le C_{\sigma} R(\eta) \norm{\xi}_{1, \sigma}.
+\end{equation}
+Это нужно сделать для $A_h(u, v) = A(u, v)$ из (\ref{eq:bilinear_form}), после чего подставить в 
+\begin{equation}
+\xmod{e_h} \le \xmod{\eta} + \xmod{\xi}.
+\end{equation}
+Чтобы получить оценку в более явном виде, нужно оценить слагаемые в $R(\eta)$, т.е, например
+\begin{gather}
+\abs{\eta}_{H^1(K)}^2 \le h^{\mu - 1}_K \abs{u}_{H^\mu(K)}, \\
+\abs{\eta}_{H^2(K)}^2 \le h^{\mu - 2}_K \abs{u}_{H^\mu(K)}, \\
+\norm{\eta}_{L^2(K)}^2 \le h^{\mu}_K \abs{u}_{H^\mu(K)}, \\
+\mu = \min(p + 1, s), \quad u \in H^s(\Omega), \quad u_h \in S_{hp}
+\end{gather}
+
+
+
+%\section{потом}
+%Данная задача решается численно с использованием метода спектральных элементов, где матричные элементы имеют вид
+%\begin{equation}
+%-\int_0^R \rho \frac{d \varphi_m}{d \rho} \frac{d \varphi_k}{d \rho} d\rho  - k^2  \int_0^R \rho \varphi_m \varphi_k d\rho + a  \varphi_m \varphi_k |_{\rho=R} = \int_0^R \rho \hat{f}_m \phi_k d \rho.
+%\end{equation}\par
+%Решение задачи (\ref{eq:poisson_f_hat})-(\ref{eq:poisson_f_hat_cond}) можно записать в виде
+%\begin{equation}
+%\hat{u}(r, k) =  K_0(\kappa \rho ) \int_0^\rho I_0 (\kappa s) \hat{f}(s, \kappa) s ds + I_0(\kappa \rho ) \int_\rho^R K_0 (\kappa s) \hat{f}(s, \kappa) s ds,
+%\end{equation} \par
+%\subsection{Оценка решения ОДУ}
+%Предполагается, что $f(r, k): \mathbb{R}^+ \cross \mathbb{R}^+ \to \mathbb{R}$, хотя на самом деле $f(r, k): \mathbb{R}^+ \cross \mathbb{R}^+ \to \mathbb{C}$, 
+%%\begin{gather}
+%%u(R, k) = K_0(k R ) \int_0^R s I_0 (k s) f(s, k) ds, \\
+%%\left( \int_0^R I_0(k s) f(s, k) s ds\right)^2 \le \norm{I_0(k s)}^2 \norm{f(s, k)}^2 =k^{-2}  R^2 I^2_1(k R)  \norm{f(s, k)}^2 \\
+%%u^2(R, k) \le \left( \frac{R}{k} K_0(k R)  I_1(k R)  \norm{f(s, k)} \right)^2
+%%\end{gather} \par
+%\begin{equation}\label{eq:altFritz}
+%c_1 \int_{0}^R r u^2(r, k) \, dr \le \int_{0}^R r \left(\dif{u(r, k)}{r} \right)^2 dr + c_2 u^2(R, k),
+%\end{equation} \par
+%где 
+%\begin{equation}
+%c_1 = \frac{\pi^2}{16 R^2}, \quad c_2 = \frac{\pi}{4},
+%\end{equation} \par
+%Если $u$ является решением (\ref{eq:poisson_f_hat}), тогда
+%\begin{equation}\label{eq:apriori}
+%\int_{0}^R r \left(\dif{u(r, k)}{r} \right)^2 \, dr  + k^2 \int_{0}^R r u^2(r, k) \, dr = -\int_0^R r f u \, d r.
+%\end{equation}
+%подставляем (\ref{eq:altFritz}) в (\ref{eq:apriori})
+%
+%\begin{equation}
+%(c_1 + k^2)\int_{0}^R r u^2(r, k) \, dr - c_2 u^2(R, k) \le -\int_0^R r f u \, d r.
+%\end{equation}
+%Учитывая, что
+%\begin{gather}
+%u(R, k) = K_0(k R ) \int_0^R s I_0 (k s) f(s, k) ds, \\
+%u^2(R, k) \le \left( \frac{R}{k} K_0(k R)  I_1(k R)  \norm{f(s, k)} \right)^2.
+%\end{gather}
+%тогда
+%\begin{equation}
+%(c_1 + k^2)\int_{0}^R r u^2(r, k) \, dr - c_2 \left( \frac{R}{k} K_0(k R)  I_1(k R)  \norm{f} \right)^2 \le -\int_0^R r f u \, d r.
+%\end{equation}
+%
+%\begin{gather}
+%(c_1 + k^2) \norm{u}^2 - c_2 \left( \frac{R}{k} K_0(k R)  I_1(k R)  \norm{f} \right)^2 \le \norm{u} \norm{f}, \\
+%(c_1 + k^2) \norm{u}^2 - c_3 \norm{f}^2 \le \norm{u} \norm{f} \\
+%\norm{u} \le \norm{f}\frac{1 + \sqrt{1 + 4 k^2 c_3 + 4 c_1 c_3}}{2\left(k^2 + c_1 \right)}
+%\end{gather}
+%\int_{0}^R r u^2(r, k) \, dr \le c_1 \int_{0}^R r \left(\dif{u(r, k)}{r} \right)^2 dr + c_2 u^2(R, k)  \\
+%\int_{0}^R r u^2(r, k) \, dr \le c_1 \int_{0}^R r \left(\dif{u(r, k)}{r} \right)^2 dr + c'_2 \left( \frac{R}{k} K_0(k R)  I_1(k R)  \norm{f(s, k)} \right)^2 \\
+%\int_{0}^R r u^2(r, k) \, dr \le c_1 \int_{0}^R r \left(\dif{u(r, k)}{r} \right)^2 dr + c_2 \norm{f(s, k)}^2 \\
+%c_1 \norm{u}  + k^2 \norm{u} - \norm{u} \norm{f} \le c_2 \norm{f} \\
+%\norm{u} \le \frac{c_2 \norm{f}}{c_1 + k^2 - \norm{f}}
+
+
+%Если $\abs{\hat{f}(s, \kappa)} \le M$, то 
+%\begin{gather}
+%\hat{u}(r, k) \le M \abs{K_0(\kappa \rho ) \int_0^\rho I_0 (\kappa s) s ds} + M \abs{I_0(\kappa \rho ) \int_\rho^R K_0 (\kappa s) s ds} , \\
+%\hat{u}(r, k) \le 
+%\end{gather} \par
+%\begin{gather}
+%\norm{u - u_h} \le C \norm{f - f_h} \\
+%\norm{A u - A u_h} = C \norm{f - f_h} \\
+%\norm{u - u_h} \le C \norm{A} \norm{u - u_h} \\
+%a(u, v) = (f, v), \quad a(u_h, v) = (f, v), \quad \norm{f_h - f} < \varepsilon
+%\end{gather}
+%\begin{equation}
+%a(u, v_n) - a(u_n, v_n) = 0
+%\end{equation}
+%Из (\ref{eq:vecInterpolant}) следует, что для каждого $k$, $\hat{f}(\rho, k)$ является 
+
+%\textbf{Обратное преобразование}
+%\vskip 12 pt
+%Так как решение (\ref{eq:poisson_f_hat}) содержит логарифмическую особенность при $k \to 0$, для обратного преобразования используются модифицированные формулы трапеций с измененными узлами и весами на концах отрезка интегрирования \cite{Gauss}, которые позволяют учесть логарифмическую особенность и сохранить высокий порядок сходимости для функций вида $\log(x) p(x) + q(x)$, где $p(x)$, $q(x)$ --- гладкие функции. \par
+%\maindef{Обратное преобразование} \par
+%\subsection{Обратное преобразование Фурье} \par
+%Для обратного преобразования используются специальные квадратурные формулы, учитывающие логарифмическую особенность $\hat{u}(\rho, k \to 0)$.
+%\begin{thebibliography}{99}
+%\bibitem{dgm} Vit D., Miloslav F. Discontinious Galerkin Method. -- Charles University Prague, 2016.
+%\bibitem{tref} Trefethen L. N. Is Gauss quadrature better than Clenshaw–Curtis? //SIAM review. – 2008. – V. 50. – №. 1. – P. 67-87.
+%\bibitem{oseledets} Oseledets I. V. Tensor-train decomposition //SIAM Journal on Scientific Computing. – 2011. – V. 33. – №. 5. – P. 2295-2317.
+%\bibitem{cheb} Xiang S., Chen X., Wang H. Error bounds for approximation in Chebyshev points //Numerische Mathematik. – 2010. – V. 116. – №. 3. – P. 463-491.
+%\bibitem{pataki} Pataki A., Greengard L. Fast elliptic solvers in cylindrical coordinates and the Coulomb collision operator //Journal of Computational Physics. – 2011. – V. 230. – №. 21. – P. 7840-7852.
+%\bibitem{gauss} Alpert B. K. Hybrid Gauss-trapezoidal quadrature rules //SIAM Journal on Scientific Computing. – 1999. – V. 20. – №. 5. – P. 1551-1584.
+%\bibitem{boyd} Boyd J. P. Chebyshev and Fourier spectral methods. – Courier Corporation, 2001.
+%\end{thebibliography}
+\end{document}
