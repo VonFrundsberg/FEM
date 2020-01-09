@@ -1,0 +1,306 @@
+\documentclass[a4paper,12pt, russian, titlepage]{article} %{extreport}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{times}
+\usepackage{cite}
+\usepackage{algorithm,algpseudocode}
+\usepackage{pscyr}
+\usepackage{mathtools}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage{amssymb,amsfonts,amsmath,amsthm} 
+\usepackage{indentfirst} 
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{multirow} 
+\usepackage{ulem}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{blindtext}
+\usepackage[12pt]{extsizes}
+\usepackage{float}
+\usepackage{xcolor}
+% Поля страницы
+\usepackage{geometry}
+\usepackage[unicode]{hyperref}
+\geometry{right=1cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+% КОНЕЦ: Поля страницы
+
+\hypersetup{pdfborder={0 0 0}}
+\hyphenpenalty=10000
+\tolerance=9999
+\binoppenalty=10000
+\relpenalty=10000
+\parindent=1cm
+\numberwithin{equation}{section}
+\abovecaptionskip=6pt
+\belowcaptionskip=6pt
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\abovedisplayshortskip=0pt
+\belowdisplayshortskip=0pt
+
+
+\makeatletter
+\newcommand{\l@abcd}[2]{\hbox to\textwidth{#1\dotfill #2}}
+
+\makeatother
+
+
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+
+\newcommand{\bd}{\textbackslash\textbackslash}
+\newcommand{\bs}{\textbackslash}
+\newcommand{\empline}{\mbox{}\newline}
+\newcommand{\OutOfContents}[1]{
+    \newpage
+    \begin{center}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{center}
+}
+\newcommand{\Razdel}[1]{
+    \newpage
+    \begin{center}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{center}
+    \addcontentsline{toc}{abcd}{#1}
+}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\append}[1]{
+    %\newpage%
+    \begin{flushright}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{flushright}
+    %\addcontentsline{toc}{abcd}{#1}%
+}
+
+\newcommand{\itab}[1]{\hspace{.55\textwidth}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.01\textwidth}\rlap{#1}}
+
+\newcommand{\Abstr}[1]{
+    \begin{center}
+    \textbf{\large{\MakeUppercase{#1}}}
+    \end{center}
+}
+
+\newcounter{figs}
+
+\renewcommand{\thefigs}{Рисунок \arabic{figs}}
+\renewcommand{\i}{\mathrm{i}}
+
+\newcommand{\FigureCaption}[2]{
+    \refstepcounter{figs}
+    \hbox to \hsize {\hfil {\parbox{#2}{\small\begin{center}\vspace{-10pt}Рисунок \arabic{figs} -- #1\end{center}\vspace{-10pt}}}\hfil}
+}
+
+\newcommand{\dif}[2]{\frac{\partial{}#1}{\partial{}#2}}
+
+\renewcommand{\baselinestretch}{1.2}
+%\renewcommand{\bfdefault}{b}
+\renewcommand{\rmdefault}{ftm} % Times New Roman
+
+\makeatletter
+
+\renewcommand{\section}{\@startsection{section}{1}{1cm}%
+{3.4ex plus 0.9ex minus .2ex}{2ex plus.2ex}%
+{\normalfont\large\bfseries}}
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{1cm}%
+{3.4ex plus 0.9ex minus .2ex}{2ex plus.2ex}%
+{\normalfont\large\bfseries}}
+
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{1cm}%
+{3.4ex plus 0.9ex minus .2ex}{2ex plus.2ex}%
+{\normalfont\large\bfseries}}
+
+\renewcommand{\l@section}{\@dottedtocline{1}{0.39cm}{1em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{0.78cm}{1.8em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{1.16cm}{2.5em}}
+
+\renewcommand{\p@figure}{Рисунок }
+\renewcommand{\p@table}{Таблица }
+
+
+\renewcommand{\@pnumwidth}{1em}
+\renewcommand{\@dotsep}{2}
+\renewcommand{\@biblabel}[1]{#1.\hfill}
+
+\renewcommand{\@makecaption}[3]{%
+
+\vspace{\abovecaptionskip}%			
+\sbox{\@tempboxa}{#1 -- #2}
+\small #1 -- #2\par%
+\vspace{\belowcaptionskip}}
+\newcommand{\maindef}[1]{\textup{\textbf{#1}}}
+\makeatother
+\newtheorem{theorem}{Теорема}
+\numberwithin{theorem}{subsection}
+\newtheorem{definition}{Определение}
+\numberwithin{definition}{subsection}
+\newtheorem{proposition}{Утверждение}
+\numberwithin{proposition}{subsection}
+
+\begin{document}
+\section{Постановка}
+Рассматривается задача 
+\begin{equation}\label{eq:main1}
+\frac{1}{r^2}\frac{\partial}{\partial r}\left(\frac{\partial u(r)}{\partial r}  \right) = f(r), \quad r \in \Omega =  \mathbb{R}_{\ge 0},
+\end{equation}
+\begin{equation}\label{eq:main2}
+\lim_{r \to 0}r^2 \frac{\partial u(r)}{\partial r} = 0, \quad \lim_{r \to \infty} u(r) = 0.
+\end{equation} \par
+Обозначим $\mathcal{T}_h$ разбиение $\Omega$ (одним из элементов разбиения является множество $K_\infty = [a, \infty), \, a \in \Omega$), так что
+\begin{equation}
+\Omega = \bigcup_{K \in \mathcal{T}_h} K
+\end{equation}
+С помощью $\mathcal{F}_h$ обозначим все поверхности элементов $K \in \mathcal{T}_h$. Далее, определим множество граничных поверхностей
+\begin{equation}
+\mathcal{F}_h^B = \{\Gamma \in \mathcal{F}_h; \Gamma \in \partial \Omega \},
+\end{equation}
+и внутренних
+\begin{equation}
+\mathcal{F}_h^I =  \mathcal{F}_h \setminus \mathcal{F}_h^B.
+\end{equation}
+Для подхода к численному решению задачи (\ref{eq:main1}-\ref{eq:main2}), для начала рассмотрим билинейную форму
+\begin{gather}\label{eq:main_weak}
+A_h(u, v) = (f, v), \\
+-\sum_{K \in \mathcal{T}_h} \int_K r^2 \frac{\partial u}{\partial r} \frac{\partial v}{\partial r} \, dx + \sum_{\Gamma \in \mathcal{F}^{I}_h} \int_\Gamma r^2 \left(\vec{n} \left \langle \frac{\partial u}{\partial r} \right\rangle [v] - \vec{n}  \left\langle \frac{\partial v}{\partial r} \right\rangle [u] \right) dS = \int_\Omega r^2 f v \, dx, 
+\end{gather} 
+действующую в пространстве
+\begin{equation}
+H^k(\Omega, \mathcal{T}_h) = \{v \in L^2(\Omega); v|_K\in H^k(K), \forall K \in \mathcal{T}_h \},
+\end{equation}
+с нормой
+\begin{equation}
+\norm{v}_{H^k(\Omega, \mathcal{T}_h)} = \left(\sum_{K \in \mathcal{T}_h} \norm{v}^2_{H^k(K)} \right)^{1/2}.
+\end{equation}\par
+Приближенное решение будем искать в конечном пространстве
+\begin{equation}\label{eq:finite_subspace}
+S_{hp} = \{v \in L^2(\Omega); v|_K \in P_p(K)\,  \forall K \in \mathcal{T}_h \},
+\end{equation}
+которое является подпространством $H^k(\Omega, \mathcal{T}_h)$. $P_p(K)$ в (\ref{eq:finite_subspace}) обозначает пространство полиномов степени $\le p$ на $K$. \par
+В качестве базисных функций на каждой из областей решения используются полиномы Лагранжа, построенные на точках ЧГЛ (Чебышева-Гаусса-Лобатто)
+\begin{equation}
+x_n = - \cos \left(\frac{n \pi}{N}\right), \quad n = 0, 1, ..., N,
+\end{equation}
+отображенных с отрезка $[-1, 1]$ на $[a, \infty)$ или $[a, b]$ одной из двух функций: $m_a(x)$ либо $m_a^b(x)$, соответственно
+\begin{equation}
+m_a(x) = \frac{1 + x}{1 - x} + a, \quad m_a^b(x) = \frac{1}{2}(b - a) x + \frac{1}{2}(b + a).
+\end{equation}
+Таким образом вычисление значений базисных функций состоит из двух шагов:
+\begin{itemize}
+\item С помощью обратных функций к $m_a(x)$, $m_a^b(x)$ точки с произвольного множества переносятся на $K_r = [-1, 1]$.
+\item Производится барицентрическая интерполяция с полученными точками на $K_r$.
+\end{itemize}
+При интегрировании используются формулы Гаусса-трапеций, которые позволяют избежать сложностей, связанных с вычислением подынтегральной функции в крайних точках.
+\section{Анализ численного метода}
+%Билинейная форма $A_h$ из (\ref{eq:main_weak}) удовлетворяет неравенствам/равенствам
+%\begin{equation}
+%|A_h(u, v)| \le \sum_{K \in \mathcal{T}_h} \int_K r^2|\frac{du}{dr} e^{-\mu r}\frac{dv}{dr}e^{\mu r}| \, dr + \sum_{x \in \mathcal{F}^I_h} r^2 |\langle \frac{du}{dr}\rangle e^{-\mu r} [v] e^{\mu r}| \big|_{r=x}+ \sum_{x \in \mathcal{F}^I_h} r^2 |\langle \frac{dv}{dr}\rangle e^{\mu r} [u]e^{-\mu r} | \big|_{r=x},
+%%|A_h(u, v)| \le |u|_{H^1(\Omega, \mathcal{T}_h)} |v|_{H^1(\Omega, \mathcal{T}_h)} + \sum_{\Gamma \in \mathcal{F}^{I}_h} \int_\Gamma r^2 \left(\vec{n} \left %\langle \frac{\partial u}{\partial r} \right\rangle [v] - \vec{n}  \left\langle \frac{\partial v}{\partial r} \right\rangle [u] \right) dS
+%\end{equation}
+\begin{equation}
+|A_h(u, v)| \le \sum_{K \in \mathcal{T}_h} \int_K r^2|\frac{du}{dr} \frac{dv}{dr}| \, dr + \sum_{x \in \mathcal{F}^I_h} r^2 |\langle \frac{du}{dr}\rangle [v]| \big|_{r=x}+ \sum_{x \in \mathcal{F}^I_h} r^2 |\langle \frac{dv}{dr}\rangle [u] | \big|_{r=x},
+%|A_h(u, v)| \le |u|_{H^1(\Omega, \mathcal{T}_h)} |v|_{H^1(\Omega, \mathcal{T}_h)} + \sum_{\Gamma \in \mathcal{F}^{I}_h} \int_\Gamma r^2 \left(\vec{n} \left %\langle \frac{\partial u}{\partial r} \right\rangle [v] - \vec{n}  \left\langle \frac{\partial v}{\partial r} \right\rangle [u] \right) dS
+\end{equation}
+из неравенства Коши для суммы и для интегралов следует
+\begin{equation}
+\sum_{K \in \mathcal{T}_h} \int_K r^2|\frac{du}{dr}\frac{dv}{dr}| \, dr \le |u|_{H^1_{r^2}(\Omega, \mathcal{T}_h)} |v|_{H^1_{r^2}(\Omega, \mathcal{T}_h)}.
+\end{equation} \par
+Для двух других слагаемых снова используем формулу Коши для произведения функций и получаем
+\begin{equation}
+|A_h(u, v)| \le |u|_{H^1_{r^2}(\Omega, \mathcal{T}_h)} |v|_{H^1_{r^2}(\Omega, \mathcal{T}_h)} + \sum_{F^I_h} r^2  \langle \frac{du}{dr}\rangle^2 \sum_{F^I_h} r^2 [v]^2 + \sum_{F^I_h} r^2  \langle \frac{dv}{dr}\rangle^2 \sum_{F^I_h} r^2 [u]^2.
+\end{equation}\par
+Используя {\color{red}неизвестное числовое  неравенство} приходим к произведению норм
+\begin{equation}
+|A_h(u, v)| \le \left( |u|^2_{H^1} +  \sum_{F^I_h} r^2 \left( \langle \frac{du}{dr}\rangle^2 + [u]^2 \right) \right)^{1/2}  \left(|v|^2_{H^1} + \sum_{F^I_h} r^2 \left( \langle \frac{dv}{dr}\rangle^2 + [v]^2 \right) \right)^{1/2},
+\end{equation}
+ где $H_1 = H^1_{r^2}(\Omega, \mathcal{T}_h)$.
+Таким образом получили необходимую норму
+\begin{equation}
+\norm{u}_{H^1_h} = \left( |u|^2_{H^1_{r^2}(\Omega, \mathcal{T}_h)} +  \sum_{F^I_h} r^2 \left( \langle \frac{du}{dr}\rangle^2 + [u]^2 \right) \right)^{1/2},
+\end{equation}
+и соответствующее неравенство
+\begin{equation}
+A_h(u, v)| \le \norm{u}_{H^1_h} \norm{v}_{H^1_h}.
+\end{equation}\par
+
+ 
+В итоге всех манипуляций получаем
+\begin{equation}
+e_h = u_h - u = \xi + \eta, \quad \xi = u_h - \Pi_h u \ \in V_h, \quad \eta = \Pi_h u - u \in W_h.
+\end{equation}
+\begin{equation}\label{eq:galerkin_orth}
+A(e_h, v_h) = 0, \quad v_h \in V_h,
+\end{equation}
+Из (\ref{eq:galerkin_orth}) следует
+\begin{equation}
+A_h(e_h, \xi) = A_h(\xi, \xi) + A_h(\eta, \xi) = 0.
+\end{equation}
+\begin{equation}
+A_h(v, v) = |v|_{H^1(\Omega, \mathcal{T}_h)}^2
+\end{equation}
+\begin{equation}
+\norm{\xi}^2 \le A_h(\xi, \xi) = -A_h(\eta, \xi) \le \norm{\eta} \norm{\xi}
+\end{equation}
+откуда  следует
+\begin{equation}
+\norm{\xi} \le \norm{\eta}
+\end{equation}
+и в итоге
+\begin{equation}
+\norm{e_h} \le \norm{\xi} + \norm{\eta} \le 2\norm{\eta}
+\end{equation}
+\subsection{По поводу погрешности интерполяции}
+Нужно получить какую-либо оценку для 
+\begin{equation}
+\norm{v - \Pi_h v}_{W_h} \le ??
+\end{equation}
+\section{Аналитическое решение}
+Правая часть $f = \exp(-r)$. \par
+Общее решение
+\begin{equation}
+u_g(r) = \frac{e^{-r} (2+r) - C_1 + r C_2}{r}
+\end{equation}
+Пределы
+\begin{gather}
+\lim_{r \to \infty} u(r) = C_2, \\
+\lim_{r \to 0} r^2 u'(r) = C_1 - 2.
+\end{gather}
+Частное решение тогда имеет вид
+\begin{equation}
+u(r) = e^{-r} + \frac{2 e^{-r}}{r} - \frac{2}{r} 
+\end{equation}
+%\begin{equation}
+%|\pi_{K,p}v - v|_H^q(K) \le 
+%\end{equation}
+
+
+\end{document}
